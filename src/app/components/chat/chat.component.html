@@ -1,0 +1,14 @@
+<h2>{{_session.usuario.nombre}}</h2>
+<hr>
+<div class="app-mensajes" id="app-mensajes">
+  <div *ngFor="let conversacion of _chatService.chats">
+    <span class="badge badge-light" [ngClass]="{'text-left': _session.usuario.uID == conversacion.uID,
+      'text-right': _session.usuario.uID != conversacion.uID}">{{conversacion.nombre}}</span>
+    <p class="alert" [ngClass]="{'alert-primary': _session.usuario.uID == conversacion.uID,
+                                'alert-success': _session.usuario.uID != conversacion.uID}" >
+      {{conversacion.mensaje}}
+    </p>
+  </div>
+
+</div>
+<input name="mensaje" type="text" class="form-control" [(ngModel)]="chat.mensaje" value="" placeholder="Enviar mensaje" (keyup.enter)="enviar()">
